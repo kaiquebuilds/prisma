@@ -1,4 +1,4 @@
-## Prisma — North Star Card
+# Prisma — North Star Card
 
 - **Purpose:** Keep Prisma focused on **reducing financial anxiety** and **increasing clarity** for Brazilian users, without triggering “big planning upfront.”
 - **How to use:** Any built slice/story should clearly advance **at least one** outcome below.

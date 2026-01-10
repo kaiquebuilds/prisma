@@ -117,21 +117,36 @@ We will use Amazon S3 for blob storage (future receipt uploads and file exports)
 
 ## 3. Alternatives Considered
 
-- **React Single-Page Application (SPA):** Considered but rejected in favor of Next.js for its performance optimizations and server-side rendering capabilities. We can achieve the same SPA-like experience with Next.js while gaining additional benefits.
-- **Use Next Route Handlers instead of Express API:** Rejected to preserve runtime control and a clear API boundary as a portfolio artifact.
-- **Other Frontend Frameworks (Vue, Angular):** Rejected in favor of React due to its maturity, ecosystem, and personal familiarity.
-- **NestJS (or other opinionated frameworks):** Rejected to avoid framework-driven architecture and showcase software design skills.
-- **Host Next.js on AWS (ECS/Fargate/CloudFront):** Rejected for MVP due to increased operational complexity vs Vercel's Next-native hosting and preview deploy workflow.
-- **Other Databases (MySQL, MongoDB):** Rejected in favor of PostgreSQL due to its strong ACID compliance and relational model, which are critical for financial data integrity.
-- **Other Cloud Providers (GCP, Azure):** Rejected in favor of AWS due to its maturity, service offerings, and personal familiarity.
-- **Other Testing Frameworks (Jest, Mocha):** Rejected in favor of Vitest due to its speed and Vite integration.
-- **Other DevOps Tools (Terraform, Jenkins):** Rejected in favor of Docker Compose and GitHub Actions for their simplicity and ease of use in a solo developer context.
-- **Other Languages (Python, Go):** Rejected in favor of TypeScript for its strong typing, ecosystem, and ability to share code between frontend and backend.
-- **Separate Repositories for Frontend and Backend:** Rejected in favor of a monorepo to facilitate code sharing and reduce integration friction.
-- **Serverless Backend (AWS Lambda):** Rejected in favor of a container-based approach to maintain control over the runtime environment and simplify local development.
-- **Other ORMs (TypeORM, Sequelize):** Rejected in favor of Prisma for its type safety and developer experience.
-- **Other CI/CD Tools (Travis CI, CircleCI):** Rejected in favor of GitHub Actions for its integration with the GitHub ecosystem and flexibility.
-- **Duplicated Calculation Logic:** Rejected in favor of a shared deterministic engine to ensure consistency and trustworthiness in sandbox mode.
+- **React Single-Page Application (SPA):**
+  - Considered but rejected in favor of Next.js for its performance optimizations and server-side rendering capabilities. We can achieve the same SPA-like experience with Next.js while gaining additional benefits.
+- **Use Next Route Handlers instead of Express API:**
+  - Rejected to preserve runtime control and a clear API boundary as a portfolio artifact.
+- **Other Frontend Frameworks (Vue, Angular):**
+  - Rejected in favor of React due to its maturity, ecosystem, and personal familiarity.
+- **NestJS (or other opinionated frameworks):**
+  - Rejected to avoid framework-driven architecture and showcase software design skills.
+- **Host Next.js on AWS (ECS/Fargate/CloudFront):**
+  - Rejected for MVP due to increased operational complexity vs Vercel's Next-native hosting and preview deploy workflow.
+- **Other Databases (MySQL, MongoDB):**
+  - Rejected in favor of PostgreSQL due to its strong ACID compliance and relational model, which are critical for financial data integrity.
+- **Other Cloud Providers (GCP, Azure):**
+  - Rejected in favor of AWS due to its maturity, service offerings, and personal familiarity.
+- **Other Testing Frameworks (Jest, Mocha):**
+  - Rejected in favor of Vitest due to its speed and Vite integration.
+- **Other DevOps Tools (Terraform, Jenkins):**
+  - Rejected in favor of Docker Compose and GitHub Actions for their simplicity and ease of use in a solo developer context.
+- **Other Languages (Python, Go):**
+  - Rejected in favor of TypeScript for its strong typing, ecosystem, and ability to share code between frontend and backend.
+- **Separate Repositories for Frontend and Backend:**
+  - Rejected in favor of a monorepo to facilitate code sharing and reduce integration friction.
+- **Serverless Backend (AWS Lambda):**
+  - Rejected in favor of a container-based approach to maintain control over the runtime environment and simplify local development.
+- **Other ORMs (TypeORM, Sequelize):**
+  - Rejected in favor of Prisma for its type safety and developer experience.
+- **Other CI/CD Tools (Travis CI, CircleCI):**
+  - Rejected in favor of GitHub Actions for its integration with the GitHub ecosystem and flexibility.
+- **Duplicated Calculation Logic:**
+  - Rejected in favor of a shared deterministic engine to ensure consistency and trustworthiness in sandbox mode.
 
 ## 4. Consequences
 
@@ -155,8 +170,13 @@ We will use Amazon S3 for blob storage (future receipt uploads and file exports)
 
 ### 4.2. Negative
 
-- Prisma ORM complex queries may be suboptimal or inexistent. Mitigation: use raw SQL queries when necessary.
-- Express lack of built-in structure may lead to inconsistent code organization. Mitigation: enforce architecture through layering and boundaries.
-- Possible overengineering for a solo developer context. Mitigation: adopt an emergent and iterative approach to architecture.
-- Maintenance overhead of multiple technologies and tools. Mitigation: prioritize simplicity and only adopt tools that provide clear value.
-- Hybrid hosting complexity (Vercel + AWS) increases configuration surface (env vars, CORS, cookies, domains). Mitigation: document env management, enforce consistent domains, add a runbook.
+- Prisma ORM complex queries may be suboptimal or non-existent.
+  - Mitigation: use raw SQL queries when necessary.
+- Express lack of built-in structure may lead to inconsistent code organization.
+  - Mitigation: enforce architecture through layering and boundaries.
+- Possible overengineering for a solo developer context.
+  - Mitigation: adopt an emergent and iterative approach to architecture.
+- Maintenance overhead of multiple technologies and tools.
+  - Mitigation: prioritize simplicity and only adopt tools that provide clear value.
+- Hybrid hosting complexity (Vercel + AWS) increases configuration surface (env vars, CORS, cookies, domains).
+  - Mitigation: document env management, enforce consistent domains, add a runbook.

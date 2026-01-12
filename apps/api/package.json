@@ -6,14 +6,21 @@
   "scripts": {
     "dev": "tsx src/main.ts"
   },
+  "nx": {
+    "tags": [
+      "scope:api"
+    ]
+  },
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^20.19.28",
+    "eslint": "^9.39.2",
+    "prettier": "^3.7.4",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "express": "^5.2.1",
-    "@prisma-finance/core": "workspace:^"
+    "@prisma-finance/core": "workspace:^",
+    "express": "^5.2.1"
   }
 }

@@ -8,6 +8,14 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "nx": {
+    "targets": {
+      "start": {
+        "dependsOn": ["build"]
+      }
+    },
+    "tags": ["scope:web"]
+  },
   "dependencies": {
     "next": "16.1.1",
     "react": "19.2.3",

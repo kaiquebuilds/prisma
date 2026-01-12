@@ -1,0 +1,19 @@
+{
+  "name": "@prisma-finance/api",
+  "version": "0.1.0",
+  "main": "apps/api/src/main.ts",
+  "author": "Kaique Borges <rique.kaique@gmail.com>",
+  "scripts": {
+    "dev": "tsx src/main.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.19.28",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "@prisma-finance/core": "workspace:^"
+  }
+}

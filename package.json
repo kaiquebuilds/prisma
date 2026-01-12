@@ -1,0 +1,8 @@
+{
+  "name": "prisma-finance",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Kaique Borges <rique.kaique@gmail.com>",
+  "license": "AGPL-3.0-only",
+  "packageManager": "pnpm@10.28.0"
+}

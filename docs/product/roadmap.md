@@ -30,7 +30,7 @@ Provide secure account access and recovery flows appropriate for personal financ
 
 ### Epic 4: Profile and Account Settings
 
-Provide the essential account and profile controls that make Prisma feel owned and safe to use (even if “boring”).
+Provide the essential account and profile controls that make Prisma feel owned and safe to use.
 
 ### Epic 5: Privacy and “Public Mode”
 
@@ -48,7 +48,7 @@ Enable manual-first capture of income and expenses with safe edit/delete behavio
 
 Move obligations out of the user’s head by modeling recurring bills and upcoming planned items.
 
-### Epic 11: Planning Views (Timeline, Running Balance, What-If)
+### Epic 11: Planning Views (Timeline, Running Balance)
 
 Show what’s due next and how it affects future balance to reduce surprise and anxiety.
 
@@ -86,10 +86,6 @@ Provide category budgets and purchase splitting. Early budgeting should start as
 
 Reduce cognitive load by making it easy to find anything without remembering where it lives.
 
-### Epic 22: UI Complexity Controls (Reduce Overwhelm)
-
-Support Juliana with simplified modes and low-cognitive-load experiences during stressful periods.
-
 ## P2 — Deeper Finance Modeling, Insights, and Portability
 
 ### Epic 17: Liabilities, Debt Payoff, and Net Worth
@@ -100,10 +96,6 @@ Track loans and payoff planning and unify assets/liabilities into net worth.
 
 Enable deeper analysis, trend visualization, and forecasting over time.
 
-### Epic 21: Speed Capture (On the Go)
-
-Make ultra-fast logging possible to sustain manual-first capture.
-
 ### Epic 23: Data Import (Statements to Staging to Import)
 
 Support importing transactions to reduce manual work without making bank integrations a requirement.
@@ -112,7 +104,11 @@ Support importing transactions to reduce manual work without making bank integra
 
 Allow exporting Prisma data to CSV for portability and external analysis.
 
-## P3 — Nice-to-have Security and Convenience
+### Epic 25 – Sandbox Mode (What‑If Scenarios)
+
+Let users safely simulate changes to upcoming cashflow and confirm actions with confidence by providing a session-only Sandbox that supports what-if edits and can atomically apply selected changes to real data.
+
+## P3 — Convenience Features
 
 ### Epic 3: Sessions and Trusted Devices
 
@@ -123,6 +119,14 @@ Improve security and convenience with trusted device semantics and extended sess
 ### Epic 7: Transfers (Between Accounts and Paying Cards)
 
 Merged into Epic 8 (Transactions). Transfers are modeled as first-class ledger operations to keep balances and reporting correct without artificial sequencing.
+
+### Epic 21: Speed Capture (On the Go)
+
+It is not an epic, but rather a cross-cutting concern addressed in multiple epics.
+
+### Epic 22: UI Complexity Controls (Reduce Overwhelm)
+
+Deprecated. Addressed as part of individual epic UX designs rather than a standalone epic.
 
 ## Non-negotiables (roadmap guardrails)
 

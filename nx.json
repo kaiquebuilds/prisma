@@ -18,6 +18,10 @@
     },
     "lint": {
       "cache": true
+    },
+    "start": {
+      "cache": true,
+      "dependsOn": ["build"]
     }
   },
   "plugins": [

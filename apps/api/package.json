@@ -3,12 +3,36 @@
   "version": "0.1.0",
   "main": "apps/api/src/index.ts",
   "author": "Kaique Borges <rique.kaique@gmail.com>",
+  "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "start": "node dist/index.js",
+    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js"
   },
   "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{projectRoot}/dist"
+        ],
+        "dependsOn": [
+          "^build"
+        ],
+        "options": {
+          "platform": "node",
+          "main": "apps/api/src/index.ts",
+          "outputPath": "apps/api/dist",
+          "bundle": true,
+          "format": [
+            "esm"
+          ],
+          "tsConfig": "apps/api/tsconfig.app.json"
+        }
+      }
+    },
     "tags": [
       "scope:api"
     ]
@@ -16,6 +40,7 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^20.19.28",
+    "esbuild": "^0.27.2",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "tsx": "^4.21.0",

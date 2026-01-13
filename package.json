@@ -6,6 +6,8 @@
   "license": "AGPL-3.0-only",
   "packageManager": "pnpm@10.28.0",
   "devDependencies": {
+    "@nx/devkit": "^22.3.3",
+    "@nx/esbuild": "^22.3.3",
     "@nx/eslint-plugin": "22.3.3",
     "@nx/js": "^22.3.3",
     "nx": "22.3.3"

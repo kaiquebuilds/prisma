@@ -1,0 +1,23 @@
+{
+  "name": "@prisma-finance/web-e2e",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "e2e": "playwright test"
+  },
+  "nx": {
+    "implicitDependencies": [
+      "@prisma-finance/web",
+      "@prisma-finance/api"
+    ]
+  },
+  "author": "Kaique Borges <rique.kaique@gmail.com>",
+  "packageManager": "pnpm@10.28.0",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.7",
+    "eslint": "^9.39.2",
+    "eslint-plugin-playwright": "^2.5.0",
+    "playwright": "^1.57.0"
+  }
+}

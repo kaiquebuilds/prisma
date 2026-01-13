@@ -8,7 +8,13 @@
     "build": {
       "dependsOn": ["^build"],
       "cache": true,
-      "outputs": ["{projectRoot}/.next"]
+      "outputs": ["{projectRoot}/.next", "{projectRoot}/dist"]
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
     }
   },
   "plugins": [
@@ -17,12 +23,6 @@
       "options": {
         "typecheck": {
           "targetName": "typecheck"
-        },
-        "build": {
-          "targetName": "build",
-          "configName": "tsconfig.lib.json",
-          "buildDepsName": "build-deps",
-          "watchDepsName": "watch-deps"
         }
       }
     }

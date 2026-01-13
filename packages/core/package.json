@@ -3,9 +3,11 @@
   "author": "Kaique Borges <rique.kaique@gmail.com>",
   "version": "0.0.1",
   "private": true,
-  "main": "src/main.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "tsx src/main.ts"
+    "build": "tsdown",
+    "test": "vitest",
+    "lint": "eslint"
   },
   "nx": {
     "tags": [
@@ -16,7 +18,9 @@
     "@types/node": "^25.0.6",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
+    "tsdown": "0.20.0-beta.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.17"
   }
 }

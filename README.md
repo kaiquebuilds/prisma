@@ -52,6 +52,8 @@ Development progress is tracked on the **[Project Board](https://github.com/user
 
 > The goal is a low-friction setup where a reviewer can run Prisma locally with minimal steps.
 
+Prisma is developed locally using Docker Compose to spin up required infrastructure, but we have a default compose file for reviewers to demo the project.
+
 ### Prerequisites
 
 - **Docker** + **Docker Compose**

@@ -15,6 +15,8 @@ v1.get("/health", (_, res: Response) => {
 });
 
 v1.get("/", async (_, res: Response) => {
+  const message = `${sayHello()} (from server)`;
+
   const user = await prisma.user.findFirst({
     where: {
       name: {
@@ -23,8 +25,14 @@ v1.get("/", async (_, res: Response) => {
     },
   });
 
+  if (!user) {
+    return res.json({
+      message,
+    });
+  }
+
   res.json({
-    message: sayHello() + `, ${user.name} (from server)`,
+    message: `${message}. Welcome, ${user.name}.`,
   });
 });
 

@@ -8,8 +8,7 @@
     "dev": "tsx watch --tsconfig=tsconfig.app.json src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "start": "node dist/index.js",
-    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js"
+    "start": "node dist/index.js"
   },
   "nx": {
     "targets": {
@@ -42,7 +41,6 @@
     "@types/express": "^5.0.6",
     "@types/node": "^20.19.28",
     "@types/pg": "^8.16.0",
-    "esbuild": "^0.27.2",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "prisma": "^7.2.0",

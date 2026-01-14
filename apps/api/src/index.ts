@@ -1,9 +1,10 @@
 import { sayHello } from "@prisma-finance/core";
+import { env } from "../env";
 import express, { Response } from "express";
 
 const app = express();
 
-const port = process.env.PORT || 3333;
+const port = env.PORT;
 
 export function foo() {
   return "bar";

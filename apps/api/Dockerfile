@@ -1,0 +1,38 @@
+FROM node:24-trixie AS builder
+
+WORKDIR /app
+
+RUN corepack enable
+
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY pnpm-workspace.yaml ./
+COPY nx.json ./
+COPY tsconfig.base.json ./
+COPY tsconfig.json ./
+COPY apps/api/package.json ./apps/api/
+COPY packages/core/package.json ./packages/core/
+
+RUN pnpm install --frozen-lockfile
+
+COPY . .
+
+RUN pnpm nx build api --configuration=production
+
+# Puts shared workspace prod dependencies alongside the project
+RUN pnpm --filter @prisma-finance/api deploy --prod --legacy /out
+
+RUN mkdir -p /out/dist && cp -R ./apps/api/dist/* /out/dist
+
+FROM node:24-trixie AS runtime
+
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+# Copies the entire /out directory because it has prod node_modules in it
+COPY --from=builder /out ./
+
+EXPOSE 3333
+
+CMD ["node", "dist/index.js"]

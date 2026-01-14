@@ -1,4 +1,4 @@
-FROM node:24-alpine AS builder
+FROM node:24-trixie AS builder
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ COPY . .
 
 RUN pnpm nx build web --configuration=production
 
-FROM node:24-alpine AS runtime
+FROM node:24-trixie AS runtime
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

@@ -1,18 +1,24 @@
 import { sayHello } from "@prisma-finance/core";
 import { env } from "../env";
 import express, { Response } from "express";
+import cors from "cors";
 
 const app = express();
 
-const port = env.PORT;
+// TODO: Only allow localhost and frontend origins
+app.use(cors());
 
 export function foo() {
   return "bar";
 }
 
 app.get("/", (_, res: Response) => {
-  res.send(sayHello());
+  res.json({
+    message: sayHello(),
+  });
 });
+
+const port = env.PORT;
 
 try {
   app.listen(port, () => {

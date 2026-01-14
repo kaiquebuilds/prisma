@@ -38,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^20.19.28",
     "esbuild": "^0.27.2",
@@ -46,12 +47,13 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^6.0.4",
-    "vitest": "^4.0.17",
-    "zod": "^4.3.5"
+    "vitest": "^4.0.17"
   },
   "dependencies": {
     "@prisma-finance/core": "workspace:^",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "zod": "^4.3.5"
   }
 }

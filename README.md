@@ -1,54 +1,91 @@
-![Prisma logo](https://github.com/user-attachments/assets/e4cc43bb-5bb2-4d10-b218-8fee4e3c90af)
+# ![Prisma 💎](https://github.com/user-attachments/assets/e4cc43bb-5bb2-4d10-b218-8fee4e3c90af)
 
-Prisma is a modern personal finance application built to help Brazilians manage their money effectively. It addresses the core problem of financial anxiety and lack of clarity by providing a consolidated, intuitive view of personal finances.
+![Status](https://img.shields.io/badge/Status-Under_Development-orange?style=flat-square) ![License](https://img.shields.io/github/license/kaiquebuilds/prisma?style=flat-square) ![TypeScript](https://img.shields.io/badge/TypeScript-100%25-blue?style=flat-square)
 
-It's built for:
+> **A “Safe-to-Spend” personal finance app tailored for Brazilian users.**
 
-- Alex, The Planner: Who seeks optimization and a clear understanding of where their money goes.
-- Juliana, The Overwhelmed: Who desires to reduce financial stress and gain control over their spending and upcoming obligations.
+Prisma is a full-stack personal finance web application currently under active development. It focuses on reducing **financial anxiety** and increasing **clarity** by making obligations, cashflow, and “can I afford this?” decisions easy to answer—especially under Brazil-specific realities like **credit card installments (_parcelado_)**.
 
-These were identified as key personas through interviews with potential users and out of my own frustration, focusing on the unique challenges and needs in managing personal finances in Brazil. For more details, check out the [Personas document](./docs/product/personas.md).
+The product is built around one simple question:
 
-## ✨ Why I'm Building This
+> _“Can I buy this today without ruining my month?”_
 
-I'm building Prisma to:
+## 📌 Core Outcomes (what Prisma Optimizes for)
 
-1. Solve mine and my family's financial management challenges by creating a tailored solution that fits our specific needs.
-2. Build a comprehensive portfolio project to showcase my full-stack engineering skills. It demonstrates my ability to design and implement a production-ready application, applying advanced architectural patterns and best practices.
+- **Clarity:** show what’s happening now and what’s coming next.
+- **Predictability:** surface upcoming obligations and their impact on cashflow.
+- **Confidence:** provide a practical “safe-to-spend” view grounded in real dates and obligations.
 
-## 🚀 Key Features
+## 👥 Target Users
 
-- 💡 Safe-to-Spend: Know exactly how much you can comfortably spend today without overshooting your goals.
-- 🗓️ Financial Calendar: Stay ahead of your finances with clear visibility to plan your expenses.
-- 💸 Transaction Tracking: Effortlessly record and categorize your income and expenses.
-- ❤️ Financial Health Status: Get a simple, intuitive indicator of your overall financial well-being.
+Prisma is designed around two primary archetypes:
+
+- **Alex (The Planner):** wants optimization, planning, and visibility into where money goes.
+- **Juliana (The Overwhelmed):** wants simplicity, reduced stress, and clear upcoming obligations.
+
+See details in: **[Product Personas](./docs/product/personas.md)**
+
+## 📚 Documentation Hub
+
+This repository is a living artifact of the engineering process: decisions, trade-offs, and reasoning are documented as the system evolves.
+
+- **[Architecture Decision Records (ADRs)](./docs/architecture/adr):** Key technical decisions made during development.
+- **[Tech Stack Rationale (ADR-001)](./docs/architecture/adr/001-tech-stack.md):** Why this stack and architecture were chosen.
+- **[Learnings](./docs/learnings.md):** Challenges encountered and solutions explored.
+- **[Product Personas](./docs/product/personas.md):** The user archetypes guiding UX and product decisions.
+
+## 🗺️ Roadmap & Progress Tracking
+
+Development progress is tracked on the **[Project Board](https://github.com/users/kaiquebuilds/projects/3)**.
 
 ## 🛠️ Tech Stack
 
-This tech stack was intentionally chosen to align with industry standards and deepen my knowledge in a broad range of skills.
+- **Frontend:** React, TypeScript, Next.js, Tailwind CSS
+- **Backend:** Node.js, Express, TypeScript
+- **Database:** PostgreSQL (via Prisma ORM)
+- **Quality:** Vitest, Playwright, GitHub Actions (CI)
+- **DevOps:** Docker Compose
+- **Cloud:** Vercel (frontend), AWS (backend + database)
+- **Monitoring:** Sentry, CloudWatch
 
-- Frontend: React, TypeScript, Vite, Tailwind CSS
-- Backend: Node.js, TypeScript, Express.js, Prisma ORM
-- Database: PostgreSQL
-- Testing: Vitest, React Testing Library, Supertest, Playwright
-- DevOps: Docker, GitHub Actions
-- Hosting: Vercel (Frontend), AWS (Backend)
-- Others: ESLint, Prettier, Husky, Lint-Staged
+## ▶️ Quickstart (demo Prisma)
 
-For a detailed rationale behind each technology choice, refer to the [Tech Stack Rationale](./docs/tech-stack.md).
+> The goal is a low-friction setup where a reviewer can run Prisma locally with minimal steps.
 
-## 🚩 Roadmap
+### Prerequisites
 
-I manage Prisma's development using GitHub Projects, which is public and updated regularly. You can view the current backlog, in-progress work, and completed features here: [Prisma Project Board](https://github.com/users/kaiquebuilds/projects/3).
+- **Docker** + **Docker Compose**
 
-## 🎨 UX/UI Design
+### Run
 
-Prisma's screens and design system are being designed with Figma. [Click here to see the current state of it](https://www.figma.com/design/8KpQd8icZsnr1Riu0PjUKr/Prisma?node-id=1083-118533&t=lLBoJLcyZC3XuAoJ-1).
+1. Start the stack:
 
-## 📝 License
+   - `docker compose up --build`
 
-This project is licensed under the GNU Affero General Public License v3.0. See the LICENSE file for details.
+2. Open the web app:
+
+   - Web should be available on the configured port (commonly `http://localhost:3000`)
+
+3. Verify the API is reachable:
+   - API health endpoint should respond (commonly `/v1/health`)
+
+> If ports differ, check the repository’s Docker Compose configuration and environment variables.
+
+## 🎨 UX/UI Design (Figma)
+
+UX is designed around reducing cognitive load for the target personas and keeping core flows consistent across desktop and mobile.
+
+[**View the Figma project ↗**](https://www.figma.com/design/8KpQd8icZsnr1Riu0PjUKr/Prisma?node-id=19496-25008&t=xnkyq6EyIBX9pHn9-1)
+
+![Figma Preview](https://github.com/user-attachments/assets/298d8fca-d7c9-4ab8-9835-55ba4da3f502)
+
+## 📄 License
+
+Licensed under **GNU AGPL v3.0**.
 
 ## 📩 Contact
 
-For any questions or feedback, feel free to reach out to me at rique.kaique@gmail.com.
+Created by **Kaique**.
+
+- **Email:** rique.kaique@gmail.com
+- **LinkedIn:** [/in/kaiquecborges/](https://www.linkedin.com/in/kaiquecborges/)

@@ -3,7 +3,6 @@
 - **Status:** Accepted
 - **Date:** 2026-01-09
 - **Decision Owners:** Kaique Borges
-- **Supersedes:** Prior ADR 002 draft that proposed Prisma-owned auth (passwords/sessions/CSRF).
 
 ## 1. Context
 

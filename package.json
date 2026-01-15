@@ -6,6 +6,8 @@
   "license": "AGPL-3.0-only",
   "packageManager": "pnpm@10.28.0",
   "devDependencies": {
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
     "@nx/devkit": "^22.3.3",
     "@nx/esbuild": "^22.3.3",
     "@nx/eslint-plugin": "22.3.3",
@@ -13,6 +15,10 @@
     "@nx/playwright": "^22.3.3",
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.15.8",
-    "nx": "22.3.3"
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "nx": "22.3.3",
+    "prettier": "^3.7.4"
   }
 }

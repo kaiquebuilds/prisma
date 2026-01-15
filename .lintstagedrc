@@ -1,0 +1,7 @@
+{
+  "*.{ts,tsx}": ["pnpm nx affected --target=typecheck"],
+  "*.{ts,tsx,js}": [
+    "pnpm nx affected:lint --fix --uncommitted",
+    "pnpm nx format:write --uncommited"
+  ]
+}

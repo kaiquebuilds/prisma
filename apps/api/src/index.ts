@@ -1,37 +1,31 @@
-import { sayHello } from "@prisma-finance/core";
-import { env } from "../env";
-import express, { Response } from "express";
+import { env } from "./env";
 import cors from "cors";
 
-const app = express();
+import { app } from "./app";
+import { prisma } from "./lib/prisma";
 
 // TODO: Only allow localhost and frontend origins
 app.use(cors());
 
-export function foo() {
-  return "bar";
-}
-
-const v1 = express.Router();
-
-v1.get("/health", (_, res: Response) => {
-  res.json({ message: "Healthy" });
-});
-
-v1.get("/", (_, res: Response) => {
-  res.json({
-    message: sayHello() + " from server",
-  });
-});
-
-app.use("/v1", v1);
-
 const port = env.PORT;
 
-try {
-  app.listen(port, () => {
-    console.log(`Server listening at port ${port}...`);
+await prisma.$connect();
+
+const server = app.listen(port, () => {
+  console.log(`Server listening at port ${port}...`);
+});
+
+server.on("error", (err) => {
+  console.error("Server error:", err);
+});
+
+async function shutdown(signal: string) {
+  console.log(`Received ${signal}, shutting down...`);
+  server.close(async () => {
+    await prisma.$disconnect();
+    process.exit(0);
   });
-} catch (error) {
-  console.error(`Error when starting server: ${error}`);
 }
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));

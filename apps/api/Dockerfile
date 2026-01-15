@@ -24,13 +24,17 @@ RUN pnpm --filter @prisma-finance/api deploy --prod --legacy /out
 
 RUN mkdir -p /out/dist && cp -R ./apps/api/dist/* /out/dist
 
+RUN cp ./apps/api/prisma.config.ts /out/prisma.config.ts
+RUN mkdir -p /out/prisma && cp -R ./apps/api/prisma/* /out/prisma
+
 FROM node:24-trixie AS runtime
 
 ENV NODE_ENV=production
 
 WORKDIR /app
 
-# Copies the entire /out directory because it has prod node_modules in it
+RUN corepack enable
+
 COPY --from=builder /out ./
 
 EXPOSE 3333

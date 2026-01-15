@@ -6,7 +6,7 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "typecheck"],
       "cache": true,
       "outputs": ["{projectRoot}/.next", "{projectRoot}/dist"]
     },

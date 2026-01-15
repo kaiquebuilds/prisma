@@ -5,11 +5,11 @@
   "author": "Kaique Borges <rique.kaique@gmail.com>",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch --tsconfig=tsconfig.app.json src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "start": "node dist/index.js",
-    "build": "esbuild src/index.ts --bundle --outfile=dist/index.js"
+    "build": "tsc --noEmit -p tsconfig.app.json && tsup"
   },
   "nx": {
     "targets": {
@@ -41,9 +41,11 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^20.19.28",
-    "esbuild": "^0.27.2",
+    "@types/pg": "^8.16.0",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
+    "tsconfig-paths": "^4.2.0",
+    "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^6.0.4",
@@ -51,9 +53,13 @@
   },
   "dependencies": {
     "@prisma-finance/core": "workspace:^",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "pg": "^8.16.3",
+    "prisma": "^7.2.0",
     "zod": "^4.3.5"
   }
 }

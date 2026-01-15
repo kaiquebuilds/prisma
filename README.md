@@ -48,17 +48,17 @@ Development progress is tracked on the **[Project Board](https://github.com/user
 - **Cloud:** Vercel (frontend), AWS (backend + database)
 - **Monitoring:** Sentry, CloudWatch
 
-## ▶️ Quickstart (demo Prisma)
-
-> The goal is a low-friction setup where a reviewer can run Prisma locally with minimal steps.
+## ▶️ Quickstart
 
 Prisma is developed locally using Docker Compose to spin up required infrastructure, but we have a default compose file for reviewers to demo the project.
 
-### Prerequisites
+### Demo Prisma with Docker
+
+#### Prerequisites
 
 - **Docker** + **Docker Compose**
 
-### Run
+#### Run
 
 1. Start the stack:
 
@@ -66,12 +66,44 @@ Prisma is developed locally using Docker Compose to spin up required infrastruct
 
 2. Open the web app:
 
-   - Web should be available on the configured port (commonly `http://localhost:3000`)
+   - Web should be available on `http://localhost:3000`
 
 3. Verify the API is reachable:
-   - API health endpoint should respond (commonly `/v1/health`)
+   - API health endpoint should respond (`http://localhost:3333/v1/health`)
 
-> If ports differ, check the repository’s Docker Compose configuration and environment variables.
+If ports differ, check the repository’s Docker Compose configuration and environment variables.
+
+### Demo Prisma locally
+
+#### Prerequisites
+
+- **Node.js LTS** + **Docker** + **Docker Compose**
+
+#### Run
+
+1. Start the infrastructure
+
+   - `docker compose -f docker-compose.dev.yaml up`
+
+2. Install dependencies
+
+   - `pnpm install`
+
+3. Run Prisma ORM migrations
+
+   - `cd apps/api && pnpm prisma migrate dev`
+
+4. Generate Prisma ORM client
+
+   - `pnpm prisma generate`
+
+5. Start the API server
+
+   - `pnpm dev`
+
+6. Start the web app
+
+   - `cd ../web && pnpm dev`
 
 ## 🎨 UX/UI Design (Figma)
 

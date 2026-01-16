@@ -1,0 +1,15 @@
+node_modules
+.pnpm-store
+.nx
+dist
+build
+coverage
+.env
+.git
+.github
+.vscode
+.idea
+*.log
+README.md
+docker-compose*.yml
+Dockerfile*

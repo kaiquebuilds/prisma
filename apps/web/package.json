@@ -6,7 +6,7 @@
     "dev": "next dev",
     "prebuild": "tsc --noEmit -p tsconfig.app.json",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p $PORT",
     "lint": "eslint -c eslint.config.mjs",
     "test": "vitest run",
     "test:watch": "vitest"

@@ -17,7 +17,11 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 
+ENV NEXT_STANDALONE=true
+
 RUN pnpm nx build web --configuration=production
+
+RUN set -eux; ls -la /app/apps/web/.next; ls -la /app/apps/web/.next/standalone
 
 FROM node:24-trixie AS runtime
 
@@ -26,12 +30,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 WORKDIR /app
 
-COPY --from=builder app/apps/web/.next/standalone ./
-COPY --from=builder app/apps/web/.next/static ./apps/web/.next/static
-COPY --from=builder app/apps/web/public ./apps/web/public
-
-EXPOSE 3000
+COPY --from=builder /app/apps/web/.next/standalone ./
+COPY --from=builder /app/apps/web/.next/static ./apps/web/.next/static
+COPY --from=builder /app/apps/web/public ./apps/web/public
 
 WORKDIR /app/apps/web
+
+EXPOSE 3000
 
 CMD ["node", "server.js"]

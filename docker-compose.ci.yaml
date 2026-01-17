@@ -2,13 +2,13 @@ services:
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfile
+      dockerfile: docker/web.Dockerfile
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: test
       PORT: "3000"
-      API_URL: http://api:3333/v1
+      API_URL: http://api:3333
     healthcheck:
       test:
         ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000 > /dev/null || exit 1"]
@@ -22,7 +22,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: docker/api.Dockerfile
     ports:
       - "3333:3333"
     environment:
@@ -47,17 +47,16 @@ services:
   migrate:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: docker/migrate.Dockerfile
     environment:
       DATABASE_URL: postgresql://prisma:prisma@postgres:5432/prisma_ci
-    command: pnpm prisma migrate deploy
     restart: no
     depends_on:
       db:
         condition: service_healthy
 
   db:
-    image: postgres:18
+    image: postgres:17
     container_name: prisma-db
     environment:
       POSTGRES_DB: prisma_ci

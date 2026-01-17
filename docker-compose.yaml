@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfile
+      dockerfile: docker/web.Dockerfile
     env_file: apps/web/.env.docker
     ports:
       - "${WEB_PORT:-3000}:3000"
@@ -10,7 +10,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: docker/api.Dockerfile
     env_file: apps/api/.env.docker
     ports:
       - "${API_PORT:-3333}:3333"
@@ -25,18 +25,16 @@ services:
   migrate:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
-    env_file: apps/api/.env.docker
+      dockerfile: docker/migrate.Dockerfile
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
-    command: pnpm prisma migrate deploy
     restart: no
     depends_on:
       db:
         condition: service_healthy
 
   db:
-    image: postgres:18
+    image: postgres:17
     container_name: prisma-db
     environment:
       - POSTGRES_DB=${POSTGRES_DB}

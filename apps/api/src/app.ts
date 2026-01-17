@@ -10,7 +10,7 @@ export function foo() {
 
 const v1 = express.Router();
 
-v1.get("/health", (_, res: Response) => {
+app.get("/health", (_, res: Response) => {
   res.json({ message: "Healthy" });
 });
 

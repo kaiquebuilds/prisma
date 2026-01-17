@@ -11,7 +11,11 @@
     "start": "node dist/index.js",
     "prebuild": "tsc --noEmit -p tsconfig.app.json",
     "build": "tsup",
-    "lint": "eslint -c eslint.config.mjs"
+    "lint": "eslint -c eslint.config.mjs",
+    "db:generate": "prisma generate --schema=./prisma/schema.prisma",
+    "db:migrate:dev": "prisma migrate dev --schema=./prisma/schema.prisma",
+    "db:migrate:deploy": "prisma migrate deploy --schema=./prisma/schema.prisma",
+    "db:studio": "prisma studio --schema=./prisma/schema.prisma"
   },
   "nx": {
     "targets": {
@@ -33,6 +37,11 @@
           ],
           "tsConfig": "apps/api/tsconfig.app.json"
         }
+      },
+      "typecheck": {
+        "dependsOn": [
+          "db:generate"
+        ]
       }
     },
     "tags": [
@@ -45,6 +54,7 @@
     "@types/node": "^20.19.28",
     "@types/pg": "^8.16.0",
     "eslint": "^9.39.2",
+    "prisma": "^7.2.0",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
@@ -60,7 +70,6 @@
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "pg": "^8.16.3",
-    "prisma": "^7.2.0",
     "zod": "^4.3.5"
   }
 }

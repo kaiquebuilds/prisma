@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:18
+    image: postgres:17
     container_name: prisma-db
     environment:
       - POSTGRES_DB=${POSTGRES_DB}

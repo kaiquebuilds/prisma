@@ -15,12 +15,14 @@
     "@nx/playwright": "^22.3.3",
     "@swc-node/register": "^1.11.1",
     "@swc/core": "^1.15.8",
+    "@types/node": "^25.0.9",
     "eslint-config-prettier": "^10.1.8",
     "execa": "^9.6.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "nx": "22.3.3",
     "prettier": "^3.7.4",
+    "typescript": "^5.9.3",
     "wait-on": "^9.0.3"
   }
 }

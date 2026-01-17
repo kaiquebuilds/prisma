@@ -9,7 +9,6 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "start": "node dist/index.js",
-    "typecheck": "tsc --build --emitDeclarationOnly",
     "build": "tsup",
     "lint": "eslint -c eslint.config.mjs",
     "db:generate": "prisma generate --schema=./prisma/schema.prisma",
@@ -51,14 +50,12 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
-    "@types/node": "^20.19.28",
     "@types/pg": "^8.16.0",
     "eslint": "^9.39.2",
     "prisma": "^7.2.0",
     "tsconfig-paths": "^4.2.0",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^6.0.4",
     "vitest": "^4.0.17"
   },

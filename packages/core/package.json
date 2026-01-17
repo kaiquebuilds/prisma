@@ -9,8 +9,7 @@
     "build": "tsdown",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint -c eslint.config.mjs",
-    "typecheck": "tsc --build --emitDeclarationOnly"
+    "lint": "eslint -c eslint.config.mjs"
   },
   "nx": {
     "tags": [
@@ -18,12 +17,10 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^25.0.6",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "tsdown": "0.20.0-beta.1",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^6.0.4",
     "vitest": "^4.0.17"
   }

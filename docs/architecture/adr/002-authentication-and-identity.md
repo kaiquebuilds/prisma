@@ -8,16 +8,6 @@
 
 Prisma is a personal finance management application where **trust, privacy, and data protection** are non-negotiable. As a solo builder, implementing authentication end-to-end (credential storage, account recovery, MFA enrollment, abuse prevention, session hardening) creates disproportionate **security risk** and **maintenance overhead**, and is not a differentiator for Prisma’s core value (calm, correct, explainable finance workflows).
 
-Architecture constraints:
-
-- Web: Next.js on Vercel (`apps/web`)
-- API: Express on AWS ECS/Fargate behind an ALB (`apps/api`)
-- DB: Postgres on RDS (Prisma ORM)
-- Product posture: **API-first**; a future **BFF** may be introduced if Prisma becomes more than a portfolio project
-- Environments:
-  - Staging-first with custom domains under `prismafinance.app`
-  - Vercel previews are **UI-only** (not expected to support full authenticated E2E flows)
-
 Decision drivers:
 
 1. **Reduce security risk** by outsourcing high-risk identity primitives to a specialized provider
@@ -94,20 +84,16 @@ CORS (staging API):
 ## 4. Alternatives Considered
 
 1. Prisma-owned authentication (passwords + sessions + recovery + MFA)
-
    - Rejected due to increased security risk and ongoing maintenance burden for a solo builder; not a Prisma differentiator.
 
 2. AWS Cognito
-
    - Rejected due to higher integration/configuration complexity and slower iteration speed for a solo Next.js-focused workflow.
 
 3. Auth0
-
    - Considered a strong standards-aligned option with broad adoption.
    - Rejected in favor of Clerk due to a better fit for Prisma’s constraints: **faster Next.js-centric integration** and a belief that Clerk is **more cost-effective at Prisma’s expected early-stage/portfolio scale** (while still supporting OIDC-style patterns and future mobile needs).
 
 4. API validates no IdP tokens (custom tokens only)
-
    - Rejected because it recreates the security and operational complexity Prisma explicitly wants to avoid owning (token issuance, refresh rotation, key management, incident response for signing keys).
 
 ## 5. Consequences

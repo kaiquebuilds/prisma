@@ -4,3 +4,5 @@ import createFetchMock from "vitest-fetch-mock";
 const fetchMock = createFetchMock(vi);
 
 fetchMock.enableMocks();
+
+process.env.API_URL ??= "any-value-to-avoid-errors-in-tests";

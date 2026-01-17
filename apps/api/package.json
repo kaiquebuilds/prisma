@@ -37,6 +37,11 @@
           ],
           "tsConfig": "apps/api/tsconfig.app.json"
         }
+      },
+      "typecheck": {
+        "dependsOn": [
+          "db:generate"
+        ]
       }
     },
     "tags": [

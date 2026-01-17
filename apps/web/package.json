@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsc --noEmit -p tsconfig.app.json",
+    "typecheck": "tsc --build --emitDeclarationOnly",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p $PORT",
+    "start": "next start",
     "lint": "eslint -c eslint.config.mjs",
     "test": "vitest run",
     "test:watch": "vitest"

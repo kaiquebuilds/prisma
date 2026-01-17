@@ -10,13 +10,10 @@
     "test": { "cache": true },
     "test:watch": { "cache": true },
     "lint": { "cache": true },
-    "start": { "cache": true, "dependsOn": ["build"] }
+    "start": { "cache": true, "dependsOn": ["build"] },
+    "typecheck": { "cache": true }
   },
   "plugins": [
-    {
-      "plugin": "@nx/js/typescript",
-      "options": { "typecheck": { "targetName": "typecheck" } }
-    },
     { "plugin": "@nx/playwright/plugin", "options": { "targetName": "e2e" } }
   ]
 }

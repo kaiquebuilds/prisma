@@ -4,8 +4,6 @@ WORKDIR /repo
 
 RUN corepack enable
 
-RUN apt-get update && apt-get install -y openssl
-
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml nx.json tsconfig.base.json tsconfig.json ./
 COPY apps/api/package.json ./apps/api/package.json
 COPY packages/core/package.json ./packages/core/package.json
@@ -20,6 +18,8 @@ WORKDIR /repo
 ENV NODE_ENV=production
 
 RUN corepack enable
+
+RUN apt-get update && apt-get install -y openssl
 
 COPY --from=deps /repo/node_modules ./node_modules
 COPY . .

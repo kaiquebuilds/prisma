@@ -18,6 +18,5 @@
       "options": { "typecheck": { "targetName": "typecheck" } }
     },
     { "plugin": "@nx/playwright/plugin", "options": { "targetName": "e2e" } }
-  ],
-  "nxCloudId": "696a0b8fa5a1fa5013d774e5"
+  ]
 }

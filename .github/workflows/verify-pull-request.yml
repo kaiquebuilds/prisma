@@ -20,7 +20,6 @@ jobs:
 
     env:
       CI: true
-      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
     steps:
       - name: Checkout (full history for Nx affected)

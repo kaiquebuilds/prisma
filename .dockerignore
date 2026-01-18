@@ -1,7 +1,11 @@
 node_modules
+**/node_modules
 .pnpm-store
 .nx
 dist
+**/dist
+**/.next
+**/.env
 build
 coverage
 .env

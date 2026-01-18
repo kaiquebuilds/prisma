@@ -24,7 +24,8 @@
           "{projectRoot}/dist"
         ],
         "dependsOn": [
-          "^build"
+          "^build",
+          "db:generate"
         ],
         "options": {
           "platform": "node",

@@ -21,8 +21,6 @@ COPY . .
 
 RUN pnpm nx build api --configuration=production
 
-RUN pnpm --filter @prisma-finance/api run db:generate
-
 # Produce pruned production dependencies
 RUN pnpm --filter @prisma-finance/api deploy --prod --legacy /out
 

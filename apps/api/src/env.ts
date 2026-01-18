@@ -11,17 +11,20 @@ const envSchema = z.object({
 
 const isDocker = process.env.DOCKER === "true";
 const isProduction = process.env.NODE_ENV === "production";
+const isTest = process.env.NODE_ENV === "test";
 
-if (!isDocker && !isProduction) {
+if (!isDocker && !isProduction && !isTest) {
   if (dotenvResult.error) {
-    throw new Error(`Missing or invalid .env file: ${dotenvResult.error.message}`);
+    throw new Error(
+      `Missing or invalid .env file: ${dotenvResult.error.message}`,
+    );
   }
 
   const fileValidationResult = envSchema.safeParse(dotenvResult.parsed);
   if (fileValidationResult.error) {
     console.error(
       "Invalid environment variables in .env: ",
-      z.treeifyError(fileValidationResult.error).properties
+      z.treeifyError(fileValidationResult.error).properties,
     );
     throw new Error("Invalid environment variables in .env");
   }
@@ -32,7 +35,7 @@ const processEnvValidationResult = envSchema.safeParse(process.env);
 if (processEnvValidationResult.error) {
   console.error(
     "Invalid environment variables in process.env: ",
-    z.treeifyError(processEnvValidationResult.error).properties
+    z.treeifyError(processEnvValidationResult.error).properties,
   );
   throw new Error("Invalid environment variables in process.env");
 }

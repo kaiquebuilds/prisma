@@ -4,9 +4,6 @@ WORKDIR /repo
 
 RUN corepack enable
 
-# Install openssl for Prisma ORM
-RUN apt-get update && apt-get install -y openssl
-
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml nx.json tsconfig.base.json tsconfig.json ./
 COPY apps/api/package.json ./apps/api/package.json
 
@@ -31,10 +28,14 @@ FROM node:24-slim AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 
+# Install openssl for Prisma ORM
+RUN apt-get update && apt-get install -y openssl
+
 COPY --from=builder --chown=node:node /out ./
+COPY --from=builder --chown=node:node /repo/scripts/api-entrypoint.sh ./
 
 EXPOSE 3333
 
 USER node
 
-CMD ["node", "dist/index.js"]
+CMD ["sh", "./api-entrypoint.sh"]

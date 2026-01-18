@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": ["node", "vitest"],
+    "types": ["node"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]

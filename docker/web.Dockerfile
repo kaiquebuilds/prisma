@@ -1,4 +1,4 @@
-FROM node:24-slim AS deps
+FROM node:24-slim AS builder
 
 WORKDIR /repo
 
@@ -11,27 +11,21 @@ COPY nx.json ./
 COPY tsconfig.base.json ./
 COPY tsconfig.json ./
 COPY apps/web/package.json ./apps/web/
-COPY packages/core/package.json ./packages/core/
+
+# Copy all package.json files that are depended upon for nx build to work correctly
+COPY --parents packages/**/package.json .
 
 RUN --mount=type=cache,id=pnpm-store,target=/pnpm/.pnpm-store \
     pnpm config set store-dir /pnpm/.pnpm-store && \
     pnpm install --frozen-lockfile
 
-FROM node:24-slim AS builder
-
-WORKDIR /repo
-ENV NODE_ENV=production
-
-RUN corepack enable
-
-COPY --from=deps /repo/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_STANDALONE=true
 
 RUN pnpm nx build web --configuration=production
 
-FROM node:24-trixie AS runtime
+FROM node:24-slim AS runtime
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1

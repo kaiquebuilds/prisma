@@ -1,8 +1,6 @@
 import { expect, test } from "vitest";
 
-function foo() {
-  return "bar";
-}
+import { foo } from "./app";
 
 test("foo() returns 'bar'", () => {
   expect(foo()).toBe("bar");

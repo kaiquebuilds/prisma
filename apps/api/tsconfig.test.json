@@ -8,7 +8,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["vitest.config.ts", "src/**/*.{spec,test}.ts"],
+  "include": ["vitest.config.ts", "src/**/*.ts"],
   "references": [
     {
       "path": "./tsconfig.app.json"

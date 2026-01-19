@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint -c eslint.config.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --build"
   },
   "nx": {
     "tags": [

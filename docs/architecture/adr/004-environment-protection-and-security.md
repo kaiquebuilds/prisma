@@ -81,52 +81,26 @@ Rate limiting will follow an adaptive approach:
 - User rights implementation (access, correction, deletion)
 - Transparent documentation (privacy policy, cookie policy)
 
-# 3. Implementation Suggestions
+# 3. Alternatives Considered
 
-## 3.1. Cloudflare Configuration
-
-- **Staging:** IP restrictions, basic rate limiting, SSL/TLS enforcement
-- **Production:** Full WAF (OWASP rules), advanced rate limiting, bot management, HTTP/2/3
-- **DNS Migration:** Point domains to Cloudflare nameservers
-
-## 3.2. Application Security
-
-- Clerk authentication
-- API security middleware (CORS, input validation, output encoding)
-- Database encryption (TLS + at-rest for Neon PostgreSQL)
-
-## 3.3. Monitoring Setup
-
-- Security event logging via Cloudflare
-- Application monitoring via Sentry
-- Custom alerts for defined priority levels
-
-## 3.4. LGPD Implementation
-
-- Privacy policy in Brazilian Portuguese
-- Data export functionality for user rights
-- Account deletion workflow with confirmation
-
-# 4. Alternatives Considered
-
-## 4.1. Self-Implemented Security
+## 3.1. Self-Implemented Security
 
 - **Considered:** Custom rate limiting, IP restrictions, and WAF in Express/Node.js
 - **Rejected:** Would require significant development time and maintenance burden for a solo developer, increasing risk of security gaps
 
-## 4.2. AWS Shield/CloudFront
+## 3.2. AWS Shield/CloudFront
 
 - **Considered:** AWS-native security services
 - **Rejected:** Higher complexity and cost compared to Cloudflare's simplicity, especially given our Vercel/Render/Neon stack
 
-## 4.3. VPN-Only Staging Access
+## 3.3. VPN-Only Staging Access
 
 - **Considered:** Require VPN connection for staging access
 - **Rejected:** Adds operational complexity and setup time, while IP whitelisting provides sufficient protection for solo development
 
-# 5. Consequences
+# 4. Consequences
 
-## 5.1. Positive
+## 4.1. Positive
 
 - **Reduced Development Time:** Cloudflare eliminates weeks of custom security implementation
 - **Enterprise-Grade Security:** Multiple layers of protection appropriate for financial data
@@ -135,7 +109,7 @@ Rate limiting will follow an adaptive approach:
 - **User Trust:** Demonstrates serious approach to data protection
 - **Portfolio Value:** Shows senior-level security thinking and pragmatic trade-offs
 
-## 5.2. Negative
+## 4.2. Negative
 
 - **Vendor Dependency:** Reliance on Cloudflare availability and pricing evolution
 - **Configuration Complexity:** Learning curve for Cloudflare dashboard and rules
@@ -143,7 +117,7 @@ Rate limiting will follow an adaptive approach:
 - **False Positives:** Rate limiting may occasionally block legitimate users
 - **Iterative Adjustments:** Security settings may need tuning based on real usage
 
-## 5.3. Risks and Mitigations
+## 4.3. Risks and Mitigations
 
 - **Risk:** Cloudflare outage affects both environments
   - **Mitigation:** Monitor Cloudflare status, have fallback IP restrictions at hosting level
@@ -152,7 +126,7 @@ Rate limiting will follow an adaptive approach:
 - **Risk:** LGPD non-compliance
   - **Mitigation:** Conservative data handling, transparent policies, legal review at scale
 
-## 5.4. Future Considerations
+## 4.4. Future Considerations
 
 - **Team Growth:** May need more sophisticated access controls
 - **Scale:** Enhanced monitoring and automated incident response

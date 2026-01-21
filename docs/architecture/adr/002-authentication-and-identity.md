@@ -1,4 +1,4 @@
-# ADR 002: Authentication & Identity — Managed Auth with Clerk (OIDC-aligned)
+# ADR 002: Authentication & Identity
 
 - **Status:** Accepted
 - **Date:** 2026-01-09
@@ -68,18 +68,6 @@ Production (mirror):
 
 - Web: `https://app.prismafinance.app`
 - API: `https://api.prismafinance.app`
-
-Staging access policy:
-
-- Staging is protected by a **Basic Auth outer gate** on both web and API
-- API CORS preflight (`OPTIONS`) must not be blocked in a way that breaks browser requests
-
-CORS (staging API):
-
-- Allow-Origin: `https://app.staging.prismafinance.app` (exact match)
-- Allow-Methods: `GET,POST,PUT,PATCH,DELETE,OPTIONS`
-- Allow-Headers: include `Authorization`, `Content-Type`
-- Add `Vary: Origin`
 
 ## 4. Alternatives Considered
 

@@ -3,9 +3,21 @@ import { createApp, registerRoutes } from "./app";
 import { prisma } from "./lib/prisma";
 import cors from "cors";
 import express from "express";
+import rateLimit from "express-rate-limit";
 
 const port = env.PORT;
 const app = createApp();
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message:
+    "We’re receiving a lot of requests right now. Please try again in a few seconds.",
+});
+
+app.use(limiter);
 
 app.use(
   cors({

@@ -60,6 +60,7 @@ Juliana / Alex
   - [ ] Integrity: edits/deletes keep totals consistent
   - [ ] Mobile-ready (tap targets + readability)
 - [ ] Observability is implemented (if applicable)
+- [ ] Rate limiting and security considerations addressed (if applicable)
 - [ ] Documentation is updated
   - [ ] ADRs created/updated (if applicable)
   - [ ] Internal docs updated (if applicable)

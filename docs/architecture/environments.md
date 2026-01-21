@@ -52,8 +52,8 @@ Goal: the real environment.
 
 ### Staging
 
-- Web: `https://app.staging.prismafinance.app` (Vercel)
-- API: `https://api.staging.prismafinance.app` (Render)
+- Web: `https://app-staging.prismafinance.app` (Vercel)
+- API: `https://api-staging.prismafinance.app` (Render)
 
 ### Production
 
@@ -111,7 +111,7 @@ Goal: the real environment.
 
 Allow only the staging web origin:
 
-- Allowed origin: `https://app.staging.prismafinance.app` (exact match)
+- Allowed origin: `https://app-staging.prismafinance.app` (exact match)
 - Allowed methods: `GET,POST,PUT,PATCH,DELETE,OPTIONS`
 - Allowed headers: include `Authorization`, `Content-Type`
 - `Vary: Origin` must be set

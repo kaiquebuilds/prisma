@@ -1,12 +1,10 @@
-import Image from "next/image";
 import { fetchApiFromServer } from "@/lib/api/server";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const { message } = await fetchApiFromServer("/v1/")
-    .then((r) => r.json())
-    .catch((e) => console.error(e));
+  const { message } = await fetchApiFromServer("/v1").then((r) => r.json());
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">

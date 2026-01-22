@@ -11,6 +11,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().default(3333),
   DATABASE_URL: z.string(),
   CORS_ORIGIN: z.url().default("http://localhost:3000"),
+  SENTRY_DSN: z.url(),
 });
 
 const isDocker = process.env.DOCKER === "true";

@@ -20,6 +20,8 @@
     "@prisma-finance/core": "workspace:^",
     "@sentry/nextjs": "^10.36.0",
     "next": "16.1.1",
+    "posthog-js": "^1.334.0",
+    "posthog-node": "^5.24.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },

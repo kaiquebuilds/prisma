@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getPostHogClient } from "@/lib/posthog-server";
 
 const apiUrl = process.env.API_URL;
 
@@ -20,44 +21,95 @@ function buildTargetUrl(req: NextRequest, pathSegments: string[]) {
   return target;
 }
 
-async function forward(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+// Get distinct ID from PostHog headers if available
+function getDistinctId(req: NextRequest): string {
+  const distinctId = req.headers.get("X-POSTHOG-DISTINCT-ID");
+  return distinctId || "anonymous";
+}
+
+async function forward(
+  req: NextRequest,
+  ctx: { params: Promise<{ path: string[] }> },
+) {
   const { path } = await ctx.params;
   const targetUrl = buildTargetUrl(req, path);
-
   const method = req.method.toUpperCase();
+  const distinctId = getDistinctId(req);
+  const posthog = getPostHogClient();
+
+  // Track API proxy request
+  posthog.capture({
+    distinctId,
+    event: "api_proxy_request",
+    properties: {
+      method,
+      path: `/${path.join("/")}`,
+      query: targetUrl.search,
+    },
+  });
 
   const headers = req.headers;
   const hasBody = method !== "GET" && method !== "HEAD";
   const body = hasBody ? await req.arrayBuffer() : undefined;
 
-  const upstream = await fetch(targetUrl, {
-    method,
-    headers,
-    body,
-    redirect: "manual",
-    cache: "no-store",
-  });
+  try {
+    const upstream = await fetch(targetUrl, {
+      method,
+      headers,
+      body,
+      redirect: "manual",
+      cache: "no-store",
+    });
 
-  const resHeaders = new Headers(upstream.headers);
+    const resHeaders = new Headers(upstream.headers);
 
-  return new NextResponse(upstream.body, {
-    status: upstream.status,
-    headers: resHeaders,
-  });
+    return new NextResponse(upstream.body, {
+      status: upstream.status,
+      headers: resHeaders,
+    });
+  } catch (error) {
+    // Track API proxy error
+    posthog.capture({
+      distinctId,
+      event: "api_proxy_error",
+      properties: {
+        method,
+        path: `/${path.join("/")}`,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+    });
+
+    throw error;
+  }
 }
 
-export async function GET(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+export async function GET(
+  req: NextRequest,
+  ctx: { params: Promise<{ path: string[] }> },
+) {
   return forward(req, ctx);
 }
-export async function POST(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+export async function POST(
+  req: NextRequest,
+  ctx: { params: Promise<{ path: string[] }> },
+) {
   return forward(req, ctx);
 }
-export async function PUT(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+export async function PUT(
+  req: NextRequest,
+  ctx: { params: Promise<{ path: string[] }> },
+) {
   return forward(req, ctx);
 }
-export async function PATCH(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+export async function PATCH(
+  req: NextRequest,
+  ctx: { params: Promise<{ path: string[] }> },
+) {
   return forward(req, ctx);
 }
-export async function DELETE(req: NextRequest, ctx: { params: Promise<{ path: string[] }> }) {
+export async function DELETE(
+  req: NextRequest,
+  ctx: { params: Promise<{ path: string[] }> },
+) {
   return forward(req, ctx);
 }

@@ -1,9 +1,14 @@
+import "./instrument";
 import { env } from "./env";
 import { createApp, registerRoutes } from "./app";
 import { prisma } from "./lib/prisma";
 import cors from "cors";
 import express from "express";
 import rateLimit from "express-rate-limit";
+import { errorHandler } from "./middleware/errorHandler";
+import { morganMiddleware } from "./middleware/morgan";
+import logger from "./lib/logger";
+import * as Sentry from "@sentry/node";
 
 const port = env.PORT;
 const app = createApp();
@@ -14,38 +19,42 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message:
-    "We’re receiving a lot of requests right now. Please try again in a few seconds.",
+    "We're receiving a lot of requests right now. Please try again in a few seconds.",
 });
 
 app.use(limiter);
-
 app.use(
   cors({
     origin: env.CORS_ORIGIN,
   }),
 );
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morganMiddleware);
 
 registerRoutes(app, prisma);
 
+Sentry.setupExpressErrorHandler(app);
+app.use(errorHandler);
+
 const server = app.listen(port, async () => {
-  console.log(`Server listening at port ${port}...`);
+  logger.info(`Server listening at port ${port}...`);
   await prisma
     .$connect()
     .then(() => {
-      console.log("Connected to the database.");
+      logger.info("Connected to the database successfully.");
     })
     .catch((err) => {
-      console.error("Failed to connect to the database:", err);
+      logger.error("Failed to connect to the database:", err);
     });
 });
 
 server.on("error", (err) => {
-  console.error("Server error:", err);
+  logger.error("Server error:", err);
 });
 
 async function shutdown(signal: string) {
-  console.log(`Received ${signal}, shutting down...`);
+  logger.info(`Received ${signal}, shutting down...`);
   server.close(async () => {
     await prisma.$disconnect();
     process.exit(0);

@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 import dotenv from "dotenv";
 import { z } from "zod";
 
-const dotenvResult = dotenv.config();
+const dotenvResult = dotenv.config({
+  quiet: true,
+});
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("production"),

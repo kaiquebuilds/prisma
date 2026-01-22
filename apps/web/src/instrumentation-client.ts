@@ -2,13 +2,15 @@ import * as Sentry from "@sentry/nextjs";
 import posthog from "posthog-js";
 
 Sentry.init({
-  dsn: "https://f50471bbfb8a947e868ef60d5bba69c3@o4510754313076736.ingest.us.sentry.io/4510754806366208",
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   integrations: [Sentry.replayIntegration()],
   tracesSampleRate: 1,
   enableLogs: true,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
   sendDefaultPii: true,
+  enabled: process.env.NODE_ENV === "production",
+  environment: process.env.APP_ENV,
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

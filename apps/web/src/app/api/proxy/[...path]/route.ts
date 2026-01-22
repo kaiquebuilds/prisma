@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getPostHogClient } from "@/lib/posthog-server";
 
 const apiUrl = process.env.API_URL;
+const apiKey = process.env.API_KEY;
 
 function requireApiUrl() {
   if (!apiUrl) {
@@ -10,8 +11,16 @@ function requireApiUrl() {
   return apiUrl;
 }
 
+function requireApiKey() {
+  if (!apiKey) {
+    throw new Error("Missing API_KEY env var");
+  }
+  return apiKey;
+}
+
 function buildTargetUrl(req: NextRequest, pathSegments: string[]) {
-  const base = requireApiUrl().replace(/\/$/, "");
+  const apiUrl = requireApiUrl();
+  const base = apiUrl.replace(/\/$/, "");
   const path = pathSegments.join("/");
 
   const target = new URL(`${base}/${path}`);
@@ -49,6 +58,15 @@ async function forward(
   });
 
   const headers = req.headers;
+
+  if (
+    process.env.NODE_ENV !== "development" &&
+    process.env.NODE_ENV !== "test"
+  ) {
+    const apiKey = requireApiKey();
+    headers.set("X-API-Key", apiKey);
+  }
+
   const hasBody = method !== "GET" && method !== "HEAD";
   const body = hasBody ? await req.arrayBuffer() : undefined;
 

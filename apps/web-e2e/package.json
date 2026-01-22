@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "e2e": "playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ui": "playwright test --ui"
   },
   "nx": {
     "implicitDependencies": [
@@ -21,5 +22,8 @@
     "eslint-plugin-playwright": "^2.5.0",
     "playwright": "^1.57.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
   }
 }

@@ -1,15 +1,17 @@
 import { defineConfig, devices } from "@playwright/test";
 import { nxE2EPreset } from "@nx/playwright/preset";
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from "dotenv";
+import path from "node:path";
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 const baseURL = process.env["BASE_URL"] || "http://localhost:3000";
+const stagingAuthUsername = process.env["STAGING_AUTH_USERNAME"] || "";
+const stagingAuthPassword = process.env["STAGING_AUTH_PASSWORD"] || "";
+
+const encodedCredentials = Buffer.from(
+  `${stagingAuthUsername}:${stagingAuthPassword}`,
+).toString("base64");
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -31,6 +33,11 @@ export default defineConfig({
     baseURL,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
+
+    /* If on staging, use basic auth */
+    extraHTTPHeaders: {
+      Authorization: `Basic ${encodedCredentials}`,
+    },
   },
 
   projects: [

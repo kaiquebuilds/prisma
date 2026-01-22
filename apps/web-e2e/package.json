@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "e2e": "playwright test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ui": "playwright test --ui"
   },
   "nx": {
     "implicitDependencies": [

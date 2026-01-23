@@ -3,7 +3,7 @@ import { env } from "./env";
 import { createApp, registerRoutes } from "./app";
 import { prisma } from "./lib/prisma";
 import cors from "cors";
-import express from "express";
+import express, { Response } from "express";
 import rateLimit from "express-rate-limit";
 import { errorHandler } from "./middleware/errorHandler";
 import { morganMiddleware } from "./middleware/morgan";
@@ -34,6 +34,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morganMiddleware);
+
+app.get("/health", (_req, res: Response) => {
+  res.json({ message: "OK" });
+});
+
 app.use(apiAuthMiddleware);
 
 registerRoutes(app, prisma);

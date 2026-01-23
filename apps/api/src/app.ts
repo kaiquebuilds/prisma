@@ -33,9 +33,6 @@ export function registerRoutes(app: Express, prisma: PrismaClient): void {
   });
 
   app.use("/v1", v1);
-  app.get("/health", (_req, res: Response) => {
-    res.json({ message: "OK" });
-  });
 }
 
 export function foo() {

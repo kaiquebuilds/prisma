@@ -1,6 +1,8 @@
 import { sayHello } from "@prisma-finance/core";
 import express, { Response, Request, Express } from "express";
 import { PrismaClient } from "./generated/prisma/client";
+import { getAuth } from "@clerk/express";
+import { protectedRoute } from "./middleware/protectedRoute";
 
 export function createApp(): Express {
   const app = express();
@@ -32,7 +34,22 @@ export function registerRoutes(app: Express, prisma: PrismaClient): void {
     });
   });
 
-  app.use("/v1", v1);
+  v1.get("/users/me", async (req: Request, res: Response) => {
+    const { userId } = getAuth(req);
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      return res.status(200).json({ message: "User profile not ready yet" });
+    }
+
+    return res.json({ data: user });
+  });
+
+  app.use("/v1", protectedRoute, v1);
 }
 
 export function foo() {

@@ -17,6 +17,7 @@
     ]
   },
   "dependencies": {
+    "@clerk/localizations": "^3.35.2",
     "@clerk/nextjs": "^6.36.10",
     "@prisma-finance/core": "workspace:^",
     "@sentry/nextjs": "^10.36.0",

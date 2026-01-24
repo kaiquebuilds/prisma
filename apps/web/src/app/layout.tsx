@@ -9,6 +9,7 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import { ptBR } from "@clerk/localizations";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={ptBR}>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}

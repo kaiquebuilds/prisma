@@ -153,6 +153,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@clerk/localizations':
+        specifier: ^3.35.2
+        version: 3.35.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@clerk/nextjs':
         specifier: ^6.36.10
         version: 6.36.10(next@16.1.1(@babel/core@7.28.6)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -865,6 +868,10 @@ packages:
     engines: {node: '>=18.17.0'}
     peerDependencies:
       express: ^4.17.0 || ^5.0.0
+
+  '@clerk/localizations@3.35.2':
+    resolution: {integrity: sha512-AFETYfl273M9hcjf6AiBcNP9+kCcbE/htAl4Q50KYIJ3IpXj0/gWL0jaj1ClRiqWXolJVAo+rAIdhrFWlu6skA==}
+    engines: {node: '>=18.17.0'}
 
   '@clerk/nextjs@6.36.10':
     resolution: {integrity: sha512-aovIQdJwmFV1RAtgRuyoNBGWTevRAvACNo7CRUBj+DcGkGDpIDRymlWj6+/yGWW+drRc1iu9xDNMZHTAlezc2g==}
@@ -7398,6 +7405,13 @@ snapshots:
       '@clerk/types': 4.101.13(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       express: 5.2.1
       tslib: 2.8.1
+    transitivePeerDependencies:
+      - react
+      - react-dom
+
+  '@clerk/localizations@3.35.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@clerk/types': 4.101.13(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     transitivePeerDependencies:
       - react
       - react-dom

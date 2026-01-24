@@ -36,14 +36,15 @@ export function registerRoutes(app: Express, prisma: PrismaClient): void {
 
   v1.get("/users/me", async (req: Request, res: Response) => {
     const { userId } = getAuth(req);
+
     const user = await prisma.user.findUnique({
       where: {
-        id: userId,
+        clerkId: userId,
       },
     });
 
     if (!user) {
-      return res.status(200).json({ message: "User profile not ready yet" });
+      return res.status(404).json({ message: "User profile not ready yet" });
     }
 
     return res.json({ data: user });

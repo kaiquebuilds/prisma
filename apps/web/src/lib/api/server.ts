@@ -11,7 +11,7 @@ export async function fetchApiFromServer(path: string) {
 
   const url = `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;
 
-  const res = await fetch(url, {
+  return fetch(url, {
     cache: "no-store",
     headers: {
       "Content-Type": "application/json",
@@ -19,11 +19,4 @@ export async function fetchApiFromServer(path: string) {
       "X-API-Key": apiKey,
     },
   });
-
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`API error (${res.status}): ${text}`);
-  }
-
-  return res;
 }

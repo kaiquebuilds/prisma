@@ -16,6 +16,8 @@ const envSchema = z.object({
     .enum(["development", "staging", "production"])
     .default("production"),
   CLERK_WEBHOOK_SECRET: z.string(),
+  CURRENT_TERMS_OF_SERVICE_VERSION: z.string(),
+  CURRENT_PRIVACY_POLICY_VERSION: z.string(),
 });
 
 const isDocker = process.env.DOCKER === "true";

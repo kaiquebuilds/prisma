@@ -8,6 +8,7 @@ import { clerkClient } from "@clerk/express";
 const router: Router = express.Router();
 const webhookSecret = env.CLERK_WEBHOOK_SECRET;
 
+// TODO: Update the user on other Clerk-issued events
 router.post("/clerk", async (req: Request, res: Response) => {
   try {
     const payload = req.body;
@@ -68,6 +69,10 @@ router.post("/clerk", async (req: Request, res: Response) => {
             clerkId,
             email,
             name,
+            termsAcceptedVersion: env.CURRENT_TERMS_OF_SERVICE_VERSION,
+            privacyAcceptedVersion: env.CURRENT_PRIVACY_POLICY_VERSION,
+            termsAcceptedAt: new Date().toISOString().split("T")[0],
+            privacyAcceptedAt: new Date().toISOString().split("T")[0],
           },
         });
       }

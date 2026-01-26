@@ -1,10 +1,12 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import withMdx from "@next/mdx";
 import type { NextConfig } from "next";
 
 const output =
   process.env.NEXT_STANDALONE === "true" ? "standalone" : undefined;
 
 const nextConfig: NextConfig = {
+  pageExtensions: ["tsx", "mdx"],
   output,
   typescript: {
     tsconfigPath: "tsconfig.app.json",
@@ -27,7 +29,7 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 };
 
-export default withSentryConfig(nextConfig, {
+const withSentry = withSentryConfig(nextConfig, {
   org: "prisma-finance",
   project: "prisma-web",
   silent: !process.env.CI,
@@ -39,3 +41,5 @@ export default withSentryConfig(nextConfig, {
     },
   },
 });
+
+export default withMdx()(withSentry);

@@ -71,8 +71,8 @@ router.post("/clerk", async (req: Request, res: Response) => {
             name,
             termsAcceptedVersion: env.CURRENT_TERMS_OF_SERVICE_VERSION,
             privacyAcceptedVersion: env.CURRENT_PRIVACY_POLICY_VERSION,
-            termsAcceptedAt: new Date().toISOString().split("T")[0],
-            privacyAcceptedAt: new Date().toISOString().split("T")[0],
+            termsAcceptedAt: new Date().toISOString(),
+            privacyAcceptedAt: new Date().toISOString(),
           },
         });
       }

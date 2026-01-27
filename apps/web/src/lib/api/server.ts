@@ -5,6 +5,7 @@ export async function fetchApiFromServer(path: string) {
   const token = await getToken();
 
   const base = process.env.API_URL;
+
   if (!base) throw new Error("Missing API_URL in .env");
 
   const url = `${base.replace(/\/$/, "")}/${path.replace(/^\//, "")}`;

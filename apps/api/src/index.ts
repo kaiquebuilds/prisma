@@ -9,8 +9,9 @@ import { errorHandler } from "./middleware/errorHandler";
 import { morganMiddleware } from "./middleware/morgan";
 import logger from "./lib/logger";
 import * as Sentry from "@sentry/node";
-import { apiAuthMiddleware } from "./middleware/apiAuthMiddleware";
 import helmet from "helmet";
+import { clerkMiddleware } from "@clerk/express";
+import webhookRouter from "./routes/webhooks";
 
 const port = env.PORT;
 const app = createApp();
@@ -30,7 +31,6 @@ app.use(
     origin: env.CORS_ORIGIN,
   }),
 );
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morganMiddleware);
@@ -39,7 +39,10 @@ app.get("/health", (_req, res: Response) => {
   res.json({ message: "OK" });
 });
 
-app.use(apiAuthMiddleware);
+app.use("/webhooks", express.raw({ type: "application/json" }), webhookRouter);
+
+app.use(clerkMiddleware());
+app.use(express.json());
 
 registerRoutes(app, prisma);
 

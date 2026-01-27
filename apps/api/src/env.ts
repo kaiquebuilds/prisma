@@ -12,10 +12,12 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
   CORS_ORIGIN: z.url().default("http://localhost:3000"),
   SENTRY_DSN: z.url(),
-  API_KEY: z.string().min(1),
   API_ENV: z
     .enum(["development", "staging", "production"])
     .default("production"),
+  CLERK_WEBHOOK_SECRET: z.string(),
+  CURRENT_TERMS_OF_SERVICE_VERSION: z.string(),
+  CURRENT_PRIVACY_POLICY_VERSION: z.string(),
 });
 
 const isDocker = process.env.DOCKER === "true";

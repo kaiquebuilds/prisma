@@ -17,10 +17,12 @@
     ]
   },
   "dependencies": {
+    "@clerk/localizations": "^3.35.2",
+    "@clerk/nextjs": "^6.36.10",
     "@prisma-finance/core": "workspace:^",
     "@sentry/nextjs": "^10.36.0",
-    "next": "16.1.1",
-    "posthog-js": "^1.334.0",
+    "next": "16.1.5",
+    "posthog-js": "^1.335.2",
     "posthog-node": "^5.24.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"

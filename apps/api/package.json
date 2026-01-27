@@ -61,9 +61,10 @@
     "vitest": "^4.0.17"
   },
   "dependencies": {
+    "@clerk/express": "^1.7.65",
     "@prisma-finance/core": "workspace:^",
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.2.0",
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
     "@sentry/node": "^10.36.0",
     "@sentry/profiling-node": "^10.36.0",
     "cors": "^2.8.5",
@@ -73,7 +74,8 @@
     "helmet": "^8.1.0",
     "morgan": "^1.10.1",
     "pg": "^8.16.3",
-    "prisma": "^7.2.0",
+    "prisma": "^7.3.0",
+    "svix": "^1.84.1",
     "winston": "^3.19.0",
     "winston-transport": "^4.9.0",
     "zod": "^4.3.5"

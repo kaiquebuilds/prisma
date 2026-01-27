@@ -1,25 +1,4 @@
 services:
-  web:
-    build:
-      context: .
-      dockerfile: docker/web.Dockerfile
-    env_file: apps/web/.env.docker
-    ports:
-      - "${WEB_PORT:-3000}:3000"
-
-  api:
-    build:
-      context: .
-      dockerfile: docker/api.Dockerfile
-    env_file: apps/api/.env.docker
-    ports:
-      - "${API_PORT:-3333}:3333"
-    environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
-    depends_on:
-      db:
-        condition: service_healthy
-
   db:
     image: postgres:17
     container_name: prisma-db
@@ -31,15 +10,6 @@ services:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - prisma_pg_data:/var/lib/postgresql/
-    healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} -h 127.0.0.1 -p 5432",
-        ]
-      interval: 5s
-      timeout: 5s
-      retries: 10
 
 volumes:
   prisma_pg_data:

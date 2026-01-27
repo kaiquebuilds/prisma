@@ -15,6 +15,8 @@ const envSchema = z.object({
   API_ENV: z
     .enum(["development", "staging", "production"])
     .default("production"),
+  CLERK_PUBLISHABLE_KEY: z.string(),
+  CLERK_SECRET_KEY: z.string(),
   CLERK_WEBHOOK_SECRET: z.string(),
   CURRENT_TERMS_OF_SERVICE_VERSION: z.string(),
   CURRENT_PRIVACY_POLICY_VERSION: z.string(),
